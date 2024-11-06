@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_tracker/widgets/left_drawer.dart';
+import 'package:mental_health_tracker/screens/moodentry_form.dart';
+import 'package:mental_health_tracker/widgets/mood_card.dart';
 
 class MyHomePage extends StatelessWidget {
-  final String npm = '5000000000'; // NPM
-  final String name = 'Gedagedi Gedagedago'; // Nama
-  final String className = 'PBP S'; // Kelas
+  final String npm = '2306226233'; // NPM
+  final String name = 'Pradipta Wachyu Aditama'; // Nama
+  final String className = 'PBP D'; // Kelas
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Mood", Icons.mood),
     ItemHomepage("Tambah Mood", Icons.add),
@@ -24,7 +27,9 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -90,6 +95,13 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
               SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!")),
             );
+            // Navigate ke route yang sesuai (tergantung jenis tombol)
+            if (item.name == "Tambah Mood") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MoodEntryFormPage()),
+              );
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
